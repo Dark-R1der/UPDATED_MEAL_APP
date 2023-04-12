@@ -6,15 +6,24 @@ class MealDetailsScreen extends StatelessWidget {
   const MealDetailsScreen({
     super.key,
     required this.meal,
+    required this.onToggleFavorites,
   });
 
   final Meal meal;
+  final void Function(Meal meal) onToggleFavorites;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text(meal.title),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  onToggleFavorites(meal);
+                },
+                icon: Icon(Icons.star_outline_rounded))
+          ],
         ),
         body: SingleChildScrollView(
           child: Column(
